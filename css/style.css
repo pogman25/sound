@@ -58,19 +58,29 @@
     height: 110px;
     text-align: left;
     overflow: hidden; }
-    .player .currentTrack .trackTitle .playingTitle {
-      color: #FFFFFF;
-      font-size: 1.8em;
-      padding: 10px 20px 5px 20px;
+    .player .currentTrack .trackTitle .playingAuthor, .player .currentTrack .trackTitle .playingTitle {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       opacity: 0.9; }
+    .player .currentTrack .trackTitle .playingTitle {
+      color: #FFFFFF;
+      font-size: 1.8em;
+      padding: 10px 20px 5px 20px; }
     .player .currentTrack .trackTitle .playingAuthor {
-      padding-left: 20px;
-      opacity: 0.9; }
+      padding: 0 20px; }
   .player .currentTrack .timePlay {
     height: 40px; }
+    .player .currentTrack .timePlay .begin, .player .currentTrack .timePlay .end {
+      padding: 5px 20px; }
+    .player .currentTrack .timePlay .begin {
+      color: #e6e3eb;
+      float: left; }
+    .player .currentTrack .timePlay .end {
+      float: right; }
+    .player .currentTrack .timePlay .playLine {
+      clear: both;
+      border: 2px solid #c0a7bf; }
   .player .currentTrack .playerControl {
     height: 100px;
     line-height: 100px;

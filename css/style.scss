@@ -88,24 +88,44 @@ $greyColor: rgba(88, 88, 88, 0.5);
       text-align: left;
       overflow: hidden;
 
-      .playingTitle {
-        color: #FFFFFF;
-        font-size: 1.8em;
-        padding: 10px 20px 5px 20px;;
+      .playingAuthor, .playingTitle {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         opacity: 0.9;
       }
 
+      .playingTitle {
+        color: #FFFFFF;
+        font-size: 1.8em;
+        padding: 10px 20px 5px 20px;;
+      }
+
       .playingAuthor {
-        padding-left: 20px;
-        opacity: 0.9;
+        padding: 0 20px;
       }
     }
 
     .timePlay {
       height: 40px;
+
+      .begin, .end {
+        padding: 5px 20px;
+      }
+
+      .begin {
+        color: $titleColor;
+        float: left;
+      }
+
+      .end {
+        float: right;
+      }
+
+      .playLine {
+        clear: both;
+        border: 2px solid $mainColor;
+      }
     }
 
     .playerControl {
