@@ -29,6 +29,7 @@ function showTags(url) {
 
 const myAudio = new Audio();
 myAudio.src = 'tracks/Oasis - Wonderwall.mp3';
+myAudio.addEventListener('timeupdate', currentTimeUpdate);
 
 function startPlay() {
     myAudio.play();
@@ -36,7 +37,6 @@ function startPlay() {
     playButton.src = 'img/pause-sign.svg';
     playButton.setAttribute('onclick', 'stopPlay()');
     playButton.classList.add('playing');
-    myAudio.addEventListener('timeupdate', currentTimeUpdate);
 }
 
 myAudio.addEventListener('loadedmetadata', function() {
@@ -54,7 +54,7 @@ function moveTime(xPos) {
     currentLine.style.width = toTime + '%';
     myAudio.removeEventListener('timeupdate', currentTimeUpdate);
 
-    document.onmousemove = function (e) {
+    linePos.onmousemove = function (e) {
         toTime = (e.clientX - linePos.getBoundingClientRect().left)/330*100;
         currentLine.style.width = toTime + '%';
         const currentPlayTime = document.querySelector('.begin');
@@ -63,8 +63,8 @@ function moveTime(xPos) {
     };
 
     document.onmouseup = function() {
-        document.onmousemove = null;
-        linePos.onmouseup = null;
+        linePos.onmousemove = null;
+        document.onmouseup = null;
         myAudio.addEventListener('timeupdate', currentTimeUpdate);
         myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
         console.log(myAudio.currentTime);
@@ -80,7 +80,6 @@ function stopPlay() {
 
 function currentTimeUpdate() {
     const currPlayTime = myAudio.currentTime.toFixed(0);
-
     const currentPlayTime = document.querySelector('.begin');
     currentPlayTime.innerHTML = (getMinuteSecond(currPlayTime));
 
