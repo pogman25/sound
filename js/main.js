@@ -65,17 +65,17 @@ function moveTime(xPos) {
     document.onmouseup = function() {
         document.onmousemove = null;
         linePos.onmouseup = null;
-        myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
         myAudio.addEventListener('timeupdate', currentTimeUpdate);
+        myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
+        console.log(myAudio.currentTime);
     };
 }
 
 function stopPlay() {
-    myAudio.pause();
     const playButton = document.querySelector('.playPause');
     playButton.src = 'img/white-play-button.svg';
     playButton.setAttribute('onclick', 'startPlay()');
-    playButton.classList.remove('playing');
+    myAudio.pause();
 }
 
 function currentTimeUpdate() {
