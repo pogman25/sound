@@ -80,7 +80,24 @@
       float: right; }
     .player .currentTrack .timePlay .playLine {
       clear: both;
-      border: 2px solid #c0a7bf; }
+      height: 4px;
+      background: #c0a7bf;
+      position: relative;
+      cursor: pointer; }
+      .player .currentTrack .timePlay .playLine .currentLine {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0; }
+        .player .currentTrack .timePlay .playLine .currentLine .currentPlace {
+          float: left;
+          width: 100%;
+          border: 2px solid #2482d0; }
+          .player .currentTrack .timePlay .playLine .currentLine .currentPlace .creepingBrick {
+            float: right;
+            -webkit-box-shadow: 0 0 5px 5px white;
+            -moz-box-shadow: 0 0 5px 5px white;
+            box-shadow: 0 0 5px 5px white; }
   .player .currentTrack .playerControl {
     height: 100px;
     line-height: 100px;

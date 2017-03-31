@@ -19,7 +19,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/id3-minimized.js"></script>
 
         <div class="player">
 
@@ -34,22 +34,24 @@
                 </div>
                 <div class="trackTitle">
                     <div class="playingTitle">
-                        Muster of puppets
+                        Track Title
                     </div>
                     <div class="playingAuthor">
-                        Metallica
+                        Current Artist
                     </div>
                 </div>
                 <div class="timePlay">
-                    <span class="begin">1:23</span><span class="end">5:49</span>
-                    <div class="playLine">
-                        <div class="currentLine"></div>
+                    <span class="begin">0:00</span><span class="end">0:00</span>
+                    <div class="playLine" onmousedown="moveTime(event.clientX)">
+                        <div class="currentLine">
+                            <div class="currentPlace"><div class="creepingBrick"></div></div>
+                        </div>
                     </div>
                 </div>
                 <div class="playerControl">
                     <img class="repeat" src="img/repeat.svg" alt="repeat" />
                     <img class="back" src="img/rewind.svg" alt="repeat" />
-                    <span class="playPauseBorder"><img class="playPause" src="img/pause-sign.svg" alt="repeat" /></span>
+                    <span class="playPauseBorder"><img onclick="startPlay()" class="playPause" src="img/white-play-button.svg" alt="repeat" /></span>
                     <img class="forward" src="img/fast-forward.svg" alt="repeat" />
                     <img class="shuffle" src="img/shuffle.svg" alt="repeat" />
                 </div>
@@ -115,5 +117,6 @@
 
         </div>
 
+        <script src="js/main.js"></script>
     </body>
 </html>
