@@ -10,21 +10,21 @@ function showTags(url) {
     console.log(tags);
     document.querySelector('.playingTitle').textContent = tags.title || "Undefined";
     document.querySelector('.playingAuthor').textContent = tags.artist || "Unnkown";
-    document.getElementById('album').textContent = tags.album || "";
-    console.log(tags.picture);
-    const image = tags.picture;
-    if (image) {
-        let base64String = "";
-        const lengthArray = image.data.length;
-        for (let i = 0; i < lengthArray; i++) {
-            base64String += String.fromCharCode(image.data[i]);
-        }
-        const base64 = "data:" + image.format + ";base64," +
-            window.btoa(base64String);
-        document.getElementById('picture').setAttribute('src',base64);
-    } else {
-        document.getElementById('picture').style.display = "none";
-    }
+    /* document.getElementById('album').textContent = tags.album || ""; */
+    // console.log(tags.picture);
+    // const image = tags.picture;
+    // if (image) {
+    //     let base64String = "";
+    //     const lengthArray = image.data.length;
+    //     for (let i = 0; i < lengthArray; i++) {
+    //         base64String += String.fromCharCode(image.data[i]);
+    //     }
+    //     const base64 = "data:" + image.format + ";base64," +
+    //         window.btoa(base64String);
+    //     document.getElementById('picture').setAttribute('src',base64);
+    // } else {
+    //     document.getElementById('picture').style.display = "none";
+    // }
 }
 
 const myAudio = new Audio();
