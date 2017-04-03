@@ -163,17 +163,24 @@
       .player .trackList .tracks ol li {
         list-style: none;
         height: 82px;
-        background: #ffffff; }
+        background: #ffffff;
+        position: relative;
+        padding-left: 60px; }
         .player .trackList .tracks ol li:before {
           font-size: 2em;
           counter-increment: myCounter;
           content: counter(myCounter);
           color: #2482d0;
-          float: left;
-          margin: 0 18px;
           line-height: 82px;
-          width: 40px;
-          height: 82px; }
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          text-align: left;
+          padding-left: 20px; }
+        .player .trackList .tracks ol li .gifDiv {
+          display: none; }
         .player .trackList .tracks ol li.active {
           position: relative;
           background: #fbdf8d; }
@@ -181,12 +188,17 @@
             content: '';
             background: url("../img/musicBack.png") no-repeat center;
             background-size: contain;
-            opacity: 0.1;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            position: absolute; }
+            opacity: 0.1; }
+          .player .trackList .tracks ol li.active .gifDiv {
+            background: transparent;
+            display: block;
+            position: absolute;
+            left: 10px;
+            top: 25px;
+            border: 1px solid #c0a7bf;
+            border-radius: 100%; }
+            .player .trackList .tracks ol li.active .gifDiv .gifImg {
+              margin: 10px; }
         .player .trackList .tracks ol li .titleAndAuthor {
           float: left;
           padding-top: 20px;

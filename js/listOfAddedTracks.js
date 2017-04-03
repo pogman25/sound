@@ -38,7 +38,7 @@ const trackList = [
     },
     {
         src: Metallica,
-        img: 'img/TraCK.jpg',
+        img: 'img/Metallica_Album.jpg',
         votes: 11,
         id: 6
     }

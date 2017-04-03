@@ -26,13 +26,17 @@ function showTags(url) {
     // }
 }
 
-const myAudio = new Audio();
-myAudio.src = 'tracks/Oasis - Wonderwall.mp3';
-myAudio.onloadedmetadata = function () {
-    console.log('data loaded');
-};
+let myAudio = document.querySelector('audio');
+
+myAudio.addEventListener('timeupdate', currentTimeUpdate);
+
+myAudio.addEventListener('abort', function () {
+    let currentLine = document.querySelector('.currentLine');
+    currentLine.style.width = 0;
+});
 
 function startPlay() {
+    myAudio = document.querySelector('audio');
     myAudio.play();
     let playButton = document.querySelector('.playPause');
     playButton.src = 'img/pause-sign.svg';
@@ -43,8 +47,8 @@ function startPlay() {
 
 myAudio.addEventListener('loadedmetadata', function() {
     const endPlayTime = document.querySelector('.end');
-    const allDuration = Math.round(myAudio.duration);
-    const minutes = Math.round(allDuration/60);
+    const allDuration = Math.floor(myAudio.duration);
+    const minutes = Math.floor(allDuration/60);
     const seconds = allDuration - minutes*60;
     endPlayTime.innerHTML = (minutes + ':' + seconds);
 });
@@ -67,11 +71,9 @@ function moveTime(xPos) {
     document.onmouseup = function() {
         linePos.onmousemove = null;
         document.onmouseup = null;
-        //console.log(toTime*Math.round(myAudio.duration)/100);
+        console.log(toTime*Math.round(myAudio.duration)/100);
         myAudio.addEventListener('timeupdate', currentTimeUpdate);
         myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
-        console.log(myAudio.currentTime);
-
     };
 }
 
