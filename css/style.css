@@ -151,54 +151,64 @@
       outline: none; }
       .player .trackList .addButton button:active {
         border: 4px solid rgba(192, 167, 191, 0.31); }
-  .player .trackList .tracks ul {
-    margin: 0;
-    padding: 0; }
-    .player .trackList .tracks ul :nth-child(even) {
-      background: #f0f1f5; }
-    .player .trackList .tracks ul li {
-      list-style: none;
-      height: 82px;
-      background: #ffffff; }
-      .player .trackList .tracks ul li.active {
-        position: relative;
-        background: #fbdf8d; }
-        .player .trackList .tracks ul li.active::before {
-          content: '';
-          background: url("../img/musicBack.png") no-repeat center;
-          background-size: contain;
-          opacity: 0.1;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          position: absolute; }
-      .player .trackList .tracks ul li .trackNumber {
-        font-size: 2em;
-        padding: 20px 30px 0 30px;
-        color: #2482d0;
-        float: left; }
-      .player .trackList .tracks ul li .titleAndAuthor {
-        float: left;
-        padding-top: 20px;
-        background: transparent;
-        text-align: left;
-        color: rgba(88, 88, 88, 0.5);
-        width: 175px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis; }
-        .player .trackList .tracks ul li .titleAndAuthor span {
+  .player .trackList .tracks {
+    height: 410px;
+    overflow: overlay; }
+    .player .trackList .tracks ol {
+      margin: 0;
+      padding: 0;
+      counter-reset: myCounter; }
+      .player .trackList .tracks ol :nth-child(even) {
+        background: #f0f1f5; }
+      .player .trackList .tracks ol li {
+        list-style: none;
+        height: 82px;
+        background: #ffffff; }
+        .player .trackList .tracks ol li:before {
+          font-size: 2em;
+          counter-increment: myCounter;
+          content: counter(myCounter);
+          color: #2482d0;
+          float: left;
+          margin: 0 18px;
+          line-height: 82px;
+          width: 40px;
+          height: 82px; }
+        .player .trackList .tracks ol li.active {
+          position: relative;
+          background: #fbdf8d; }
+          .player .trackList .tracks ol li.active::before {
+            content: '';
+            background: url("../img/musicBack.png") no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            position: absolute; }
+        .player .trackList .tracks ol li .titleAndAuthor {
+          float: left;
+          padding-top: 20px;
+          background: transparent;
+          text-align: left;
           color: rgba(88, 88, 88, 0.5);
-          font-size: 0.8em; }
-        .player .trackList .tracks ul li .titleAndAuthor :first-child {
-          color: rgba(82, 82, 82, 0.9);
-          font-size: 1em; }
-      .player .trackList .tracks ul li .votes {
-        float: right;
-        color: rgba(88, 88, 88, 0.5);
-        padding-top: 55px;
-        padding-right: 25px;
-        font-size: 0.7em; }
+          width: 175px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis; }
+          .player .trackList .tracks ol li .titleAndAuthor span {
+            color: rgba(88, 88, 88, 0.5);
+            font-size: 0.8em; }
+          .player .trackList .tracks ol li .titleAndAuthor :first-child {
+            color: rgba(82, 82, 82, 0.9);
+            font-size: 1em; }
+        .player .trackList .tracks ol li .votes {
+          background: transparent;
+          float: right;
+          color: rgba(88, 88, 88, 0.5);
+          margin-top: 55px;
+          margin-right: 25px;
+          font-size: 0.7em; }
 
 /*# sourceMappingURL=style.css.map */

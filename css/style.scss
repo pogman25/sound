@@ -233,10 +233,13 @@ $greyColor: rgba(88, 88, 88, 0.5);
     }
 
     .tracks{
+      height: 410px;
+      overflow: overlay;
 
-      ul {
+      ol {
         margin: 0;
         padding: 0;
+        counter-reset: myCounter;
 
         :nth-child(even) {
           background: #f0f1f5;
@@ -246,6 +249,18 @@ $greyColor: rgba(88, 88, 88, 0.5);
           list-style: none;
           height: 82px;
           background: #ffffff;
+
+          &:before {
+            font-size: 2em;
+            counter-increment: myCounter;
+            content:counter(myCounter);
+            color: $secondColor;
+            float: left;
+            margin: 0 18px;
+            line-height: 82px;
+            width: 40px;
+            height: 82px;
+          }
 
           &.active {
 
@@ -262,13 +277,6 @@ $greyColor: rgba(88, 88, 88, 0.5);
               position: absolute;
             }
             background: #fbdf8d;
-          }
-
-          .trackNumber {
-            font-size: 2em;
-            padding: 20px 30px 0 30px;
-            color: $secondColor;
-            float: left;
           }
 
           .titleAndAuthor {
@@ -295,10 +303,11 @@ $greyColor: rgba(88, 88, 88, 0.5);
           }
 
           .votes {
+            background: transparent;
             float: right;
             color: $greyColor;
-            padding-top: 55px;
-            padding-right: 25px;
+            margin-top: 55px;
+            margin-right: 25px;
             font-size: 0.7em;
           }
 
