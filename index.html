@@ -48,14 +48,12 @@
                         </div>
                     </div>
                 </div>
-                <audio controls width="330">
-                    <source src="tracks/Oasis%20-%20Wonderwall.mp3">
-                </audio>
+
                 <div class="playerControl">
                     <img class="repeat" src="img/repeat.svg" alt="repeat" />
-                    <img class="back" src="img/rewind.svg" alt="repeat" />
+                    <img class="back" onclick="backward()" src="img/rewind.svg" alt="repeat" />
                     <span class="playPauseBorder"><img onclick="startPlay()" class="playPause" src="img/white-play-button.svg" alt="repeat" /></span>
-                    <img class="forward" src="img/fast-forward.svg" alt="repeat" />
+                    <img class="forward" onclick="forward()" src="img/fast-forward.svg" alt="repeat" />
                     <img class="shuffle" src="img/shuffle.svg" alt="repeat" />
                 </div>
                 <div class="playInBar">
@@ -82,7 +80,7 @@
         </div>
 
         <script src="js/listOfAddedTracks.js"></script>
-        <script src="js/main.js"></script>
         <script src="js/trackList.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

@@ -1,32 +1,5 @@
 
-ID3.loadTags("tracks/Oasis - Wonderwall.mp3", function() {
-    showTags("tracks/Oasis - Wonderwall.mp3");
-}, {
-    tags: ["title","artist","album","picture"]
-});
-
-function showTags(url) {
-    const tags = ID3.getAllTags(url);
-    document.querySelector('.playingTitle').textContent = tags.title || "Undefined";
-    document.querySelector('.playingAuthor').textContent = tags.artist || "Unnkown";
-    /* document.getElementById('album').textContent = tags.album || ""; */
-    // console.log(tags.picture);
-    // const image = tags.picture;
-    // if (image) {
-    //     let base64String = "";
-    //     const lengthArray = image.data.length;
-    //     for (let i = 0; i < lengthArray; i++) {
-    //         base64String += String.fromCharCode(image.data[i]);
-    //     }
-    //     const base64 = "data:" + image.format + ";base64," +
-    //         window.btoa(base64String);
-    //     document.getElementById('picture').setAttribute('src',base64);
-    // } else {
-    //     document.getElementById('picture').style.display = "none";
-    // }
-}
-
-let myAudio = document.querySelector('audio');
+const myAudio = new Audio();
 
 myAudio.addEventListener('timeupdate', currentTimeUpdate);
 
@@ -35,17 +8,25 @@ myAudio.addEventListener('abort', function () {
     currentLine.style.width = 0;
 });
 
-function startPlay() {
-    myAudio = document.querySelector('audio');
-    myAudio.play();
-    let playButton = document.querySelector('.playPause');
-    playButton.src = 'img/pause-sign.svg';
-    playButton.setAttribute('onclick', 'stopPlay()');
-    playButton.classList.add('playing');
-    myAudio.addEventListener('timeupdate', currentTimeUpdate);
+function startPlay () {
+    const list = [].slice.call(document.querySelectorAll('.list'));
+    const activeClass = list.filter(item => item.classList.contains('active'));
+    if(!activeClass.length) {
+        const event = new Event('click');
+        list[0].dispatchEvent(event);
+    } else {
+        myAudio.play();
+        addPauseButton();
+        myAudio.addEventListener('timeupdate', currentTimeUpdate);
+    }
 }
 
-myAudio.addEventListener('loadedmetadata', function() {
+function stopPlay () {
+    addPlayButton();
+    myAudio.pause();
+}
+
+myAudio.addEventListener('loadedmetadata', function () {
     const endPlayTime = document.querySelector('.end');
     const allDuration = Math.floor(myAudio.duration);
     const minutes = Math.floor(allDuration/60);
@@ -53,7 +34,7 @@ myAudio.addEventListener('loadedmetadata', function() {
     endPlayTime.innerHTML = (minutes + ':' + seconds);
 });
 
-function moveTime(xPos) {
+function moveTime (xPos) {
     let linePos = document.querySelector('.playLine');
     let currentLine = document.querySelector('.currentLine');
     let toTime = (xPos - linePos.getBoundingClientRect().left)/330*100;
@@ -68,35 +49,52 @@ function moveTime(xPos) {
         currentPlayTime.innerHTML = (getMinuteSecond(time));
     };
 
-    document.onmouseup = function() {
+    document.onmouseup = function () {
         linePos.onmousemove = null;
         document.onmouseup = null;
-        console.log(toTime*Math.round(myAudio.duration)/100);
         myAudio.addEventListener('timeupdate', currentTimeUpdate);
         myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
     };
 }
 
-function stopPlay() {
-    const playButton = document.querySelector('.playPause');
-    playButton.src = 'img/white-play-button.svg';
-    playButton.setAttribute('onclick', 'startPlay()');
-    myAudio.pause();
+function setTrackFromList (src) {
+    myAudio.src = src;
+    myAudio.addEventListener('durationchange', startPlay);
+    myAudio.addEventListener('ended', forward);
 }
 
-function currentTimeUpdate() {
-    const currPlayTime = myAudio.currentTime.toFixed(0);
-    const currentPlayTime = document.querySelector('.begin');
-    currentPlayTime.innerHTML = (getMinuteSecond(currPlayTime));
 
-    const durationPercent = currPlayTime/Math.round(myAudio.duration)*100;
-    const timeValue = document.querySelector('.currentLine');
-    timeValue.style.width = durationPercent+'%';
+function forward () {
+    const list = [].slice.call(document.querySelectorAll('.list'));
+    const event = new Event('click');
+    const activeClass = list.filter(item => item.classList.contains('active'));
+    if(activeClass.length) {
+        if(activeClass[0].nextElementSibling) {
+            activeClass[0].nextElementSibling.dispatchEvent(event);
+        } else {
+            list[0].dispatchEvent(event);
+        }
+    } else {
+        list[0].dispatchEvent(event);
+    }
 }
 
-function getMinuteSecond(time) {
-    const minutes = Math.floor(time/60);
-    const seconds = time - minutes*60;
-    const viewSeconds = seconds < 10 ? '0' + seconds : seconds;
-    return minutes + ':' + viewSeconds;
+function backward () {
+    const list = [].slice.call(document.querySelectorAll('.list'));
+    const event = new Event('click');
+    if(myAudio.currentTime < 10) {
+        let activeClass = list.filter((item, num) => {return item.classList.contains('active')});
+        if(activeClass.length) {
+            if(activeClass[0].previousElementSibling) {
+                activeClass[0].previousElementSibling.dispatchEvent(event);
+            } else {
+                list[list.length-1].dispatchEvent(event);
+            }
+        } else {
+            list[0].dispatchEvent(event);
+        }
+    } else {
+        myAudio.currentTime = 0;
+    }
+
 }
