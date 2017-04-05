@@ -153,7 +153,9 @@
         border: 4px solid rgba(192, 167, 191, 0.31); }
   .player .trackList .tracks {
     height: 410px;
-    overflow: overlay; }
+    overflow: hidden; }
+    .player .trackList .tracks:hover {
+      overflow: overlay; }
     .player .trackList .tracks ol {
       margin: 0;
       padding: 0;
@@ -165,7 +167,8 @@
         height: 82px;
         background: #ffffff;
         position: relative;
-        padding-left: 60px; }
+        padding-left: 60px;
+        perspective: 800px; }
         .player .trackList .tracks ol li:before {
           font-size: 2em;
           counter-increment: myCounter;
@@ -201,20 +204,37 @@
               margin: 10px; }
         .player .trackList .tracks ol li .titleAndAuthor {
           float: left;
-          padding-top: 20px;
-          background: transparent;
+          height: 82px;
+          background: inherit;
           text-align: left;
           color: rgba(88, 88, 88, 0.5);
           width: 175px;
           overflow: hidden;
           white-space: nowrap;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          transform-style: preserve-3d;
+          transition: transform 1s ease;
+          position: relative;
+          transform-origin: 100% 41px; }
+          .player .trackList .tracks ol li .titleAndAuthor .rotatePart, .player .trackList .tracks ol li .titleAndAuthor .backRotatePart {
+            position: absolute;
+            background: inherit;
+            top: 20px;
+            left: 0; }
+          .player .trackList .tracks ol li .titleAndAuthor .rotatePart {
+            z-index: 2; }
+          .player .trackList .tracks ol li .titleAndAuthor .backRotatePart {
+            transform: rotateX(180deg);
+            height: 44px;
+            width: 100%; }
           .player .trackList .tracks ol li .titleAndAuthor span {
             color: rgba(88, 88, 88, 0.5);
             font-size: 0.8em; }
           .player .trackList .tracks ol li .titleAndAuthor :first-child {
             color: rgba(82, 82, 82, 0.9);
             font-size: 1em; }
+        .player .trackList .tracks ol li:hover .titleAndAuthor {
+          transform: rotateX(-180deg); }
         .player .trackList .tracks ol li .votes {
           background: transparent;
           float: right;

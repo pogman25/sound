@@ -234,7 +234,10 @@ $greyColor: rgba(88, 88, 88, 0.5);
 
     .tracks{
       height: 410px;
-      overflow: overlay;
+      overflow: hidden;
+      &:hover {
+        overflow: overlay;
+      }
 
       ol {
         margin: 0;
@@ -251,6 +254,7 @@ $greyColor: rgba(88, 88, 88, 0.5);
           background: #ffffff;
           position: relative;
           padding-left: 60px;
+          perspective: 800px;
 
           &:before {
             font-size: 2em;
@@ -298,14 +302,35 @@ $greyColor: rgba(88, 88, 88, 0.5);
 
           .titleAndAuthor {
             float: left;
-            padding-top: 20px;
-            background: transparent;
+            height: 82px;
+            background: inherit;
             text-align: left;
             color: $greyColor;
             width: 175px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+            position: relative;
+            transform-origin: 100% 41px;
+
+            .rotatePart, .backRotatePart {
+              position: absolute;
+              background: inherit;
+              top: 20px;
+              left: 0;
+            }
+
+            .rotatePart {
+              z-index: 2;
+            }
+
+            .backRotatePart {
+              transform: rotateX(180deg);
+              height: 44px;
+              width: 100%;
+            }
 
             span {
               color: $greyColor;
@@ -317,6 +342,10 @@ $greyColor: rgba(88, 88, 88, 0.5);
               font-size: 1em;
             }
 
+          }
+
+          &:hover .titleAndAuthor {
+            transform: rotateX(-180deg);
           }
 
           .votes {
