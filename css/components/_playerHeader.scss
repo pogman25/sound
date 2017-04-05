@@ -1,0 +1,21 @@
+
+.playerHeader {
+  height: 64px;
+  position: relative;
+
+  .leftArrow {
+    max-width: 16px;
+    padding: 4px;
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    border: 2px solid $mainColor;
+    border-radius: 100%;
+  }
+
+  .plus, .heart {
+    max-width: 28px;
+    float: right;
+    margin: 18px 20px 0 20px;
+  }
+}

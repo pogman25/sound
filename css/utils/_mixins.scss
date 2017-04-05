@@ -1,0 +1,11 @@
+@mixin backGradient() {
+  background: -moz-linear-gradient(-45deg, #b45c8c 0%, #81598a 35%, #49558a 73%, #505a8e 100%) no-repeat center center fixed;
+  background: -webkit-linear-gradient(-45deg, #b45c8c 0%,#81598a 35%,#49558a 73%,#505a8e 100%) no-repeat center center fixed;
+  background: linear-gradient(135deg, #b45c8c 0%,#81598a 35%,#49558a 73%,#505a8e 100%) no-repeat center center fixed;
+}
+
+@mixin playerBack() {
+  background: -moz-linear-gradient(-75deg, rgba(41,137,216,0) 20%, rgba(41,137,216,0.4) 40%, rgba(36,130,208,0.6) 51%, rgba(32,124,202,0.40) 60%, rgba(32,124,202,0) 80%);
+  background: -webkit-linear-gradient(-75deg, rgba(41,137,216,0) 20%,rgba(41,137,216,0.4) 40%,rgba(36,130,208,0.6) 51%,rgba(32,124,202,0.40) 60%,rgba(32,124,202,0) 80%);
+  background: linear-gradient(165deg, rgba(41,137,216,0) 20%,rgba(41,137,216,0.40) 40%,rgba(36,130,208,0.6) 51%,rgba(32,124,202,0.40) 60%,rgba(32,124,202,0) 80%);
+}
