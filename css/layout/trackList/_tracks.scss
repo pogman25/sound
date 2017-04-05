@@ -1,0 +1,9 @@
+.tracks{
+  height: 410px;
+  overflow: hidden;
+
+  &:hover {
+    overflow: overlay;
+  }
+
+}

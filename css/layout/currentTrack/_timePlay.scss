@@ -1,0 +1,46 @@
+.timePlay {
+  height: 40px;
+
+  .begin, .end {
+    padding: 5px 20px;
+  }
+
+  .begin {
+    color: $titleColor;
+    float: left;
+  }
+
+  .end {
+    float: right;
+  }
+
+  .playLine {
+    clear: both;
+    height: 4px;
+    background: $mainColor;
+    position: relative;
+    cursor: pointer;
+
+    .currentLine{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+
+      .currentPlace {
+        float: left;
+        width: 100%;
+        border: 2px solid $secondColor;
+
+        .creepingBrick {
+          float: right;
+          -webkit-box-shadow: 0 0 5px 5px white;
+          -moz-box-shadow: 0 0 5px 5px white;
+          box-shadow: 0 0 5px 5px white;
+        }
+
+      }
+    }
+  }
+
+}

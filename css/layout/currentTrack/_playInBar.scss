@@ -1,0 +1,12 @@
+.playInBar {
+  width: 100%;
+  height: 66px;
+  color: #FFF;
+  background: $secondColor;
+  line-height: 66px;
+
+  .playButton {
+    max-width: 25px;
+    margin-right: 15px;
+  }
+}

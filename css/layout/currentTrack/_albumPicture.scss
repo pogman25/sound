@@ -1,0 +1,23 @@
+.albumPicture {
+  height: 220px;
+  position: relative;
+  background: url('../img/6754.svg') no-repeat center;
+  background-size: cover;
+
+  &::after {
+    content: '';
+    @include playerBack();
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    position: absolute;
+  }
+
+  img {
+    max-width: 150px;
+    margin: 25px;
+    float: left;
+  }
+}

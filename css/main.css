@@ -32,6 +32,97 @@ h1, h2, h3, h4, h5, h6 {
   width: 330px;
   height: 600px; }
 
+ol {
+  margin: 0;
+  padding: 0;
+  counter-reset: myCounter; }
+
+li {
+  list-style: none;
+  height: 82px;
+  background: #ffffff;
+  position: relative;
+  padding-left: 60px;
+  perspective: 800px; }
+  li:nth-child(even) {
+    background: #f0f1f5; }
+  li:before {
+    font-size: 2em;
+    counter-increment: myCounter;
+    content: counter(myCounter);
+    color: #2482d0;
+    line-height: 82px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    padding-left: 20px; }
+  li .gifDiv {
+    display: none; }
+  li .votes {
+    background: transparent;
+    float: right;
+    color: rgba(88, 88, 88, 0.5);
+    margin-top: 55px;
+    margin-right: 25px;
+    font-size: 0.7em; }
+
+li.active {
+  position: relative;
+  background: #fbdf8d; }
+  li.active::before {
+    content: '';
+    background: url("../img/musicBack.png") no-repeat center;
+    background-size: contain;
+    opacity: 0.1; }
+  li.active .gifDiv {
+    background: transparent;
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    border: 1px solid #c0a7bf;
+    border-radius: 100%; }
+    li.active .gifDiv .gifImg {
+      margin: 10px; }
+
+.titleAndAuthor {
+  float: left;
+  height: 82px;
+  background: inherit;
+  text-align: left;
+  color: rgba(88, 88, 88, 0.5);
+  width: 175px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  position: relative;
+  transform-origin: 100% 41px; }
+  .titleAndAuthor .rotatePart, .titleAndAuthor .backRotatePart {
+    position: absolute;
+    background: inherit;
+    top: 20px;
+    left: 0; }
+  .titleAndAuthor .rotatePart {
+    z-index: 2; }
+  .titleAndAuthor .backRotatePart {
+    transform: rotateX(180deg);
+    height: 44px;
+    width: 100%; }
+  .titleAndAuthor span {
+    color: rgba(88, 88, 88, 0.5);
+    font-size: 0.8em; }
+  .titleAndAuthor :first-child {
+    color: rgba(82, 82, 82, 0.9);
+    font-size: 1em; }
+
+li:hover .titleAndAuthor {
+  transform: rotateX(-180deg); }
+
 .player {
   margin: 10vh auto;
   text-align: center;
@@ -79,6 +170,21 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 20px 5px 20px; }
   .currentTrack .trackTitle .playingAuthor {
     padding: 0 20px; }
+.currentTrack .playerControl {
+  height: 100px;
+  line-height: 100px;
+  font-weight: lighter; }
+  .currentTrack .playerControl :first-child {
+    margin: 16px; }
+  .currentTrack .playerControl img {
+    max-width: 28px;
+    margin: 10px; }
+  .currentTrack .playerControl .playPauseBorder {
+    border: 1px solid #a7a9c5;
+    border-radius: 100%;
+    padding: 21px 0px; }
+  .currentTrack .playerControl :last-child {
+    margin: 16px; }
 .currentTrack .timePlay {
   height: 40px; }
   .currentTrack .timePlay .begin, .currentTrack .timePlay .end {
@@ -108,21 +214,6 @@ h1, h2, h3, h4, h5, h6 {
           -webkit-box-shadow: 0 0 5px 5px white;
           -moz-box-shadow: 0 0 5px 5px white;
           box-shadow: 0 0 5px 5px white; }
-.currentTrack .playerControl {
-  height: 100px;
-  line-height: 100px;
-  font-weight: lighter; }
-  .currentTrack .playerControl :first-child {
-    margin: 16px; }
-  .currentTrack .playerControl img {
-    max-width: 28px;
-    margin: 10px; }
-  .currentTrack .playerControl .playPauseBorder {
-    border: 1px solid #a7a9c5;
-    border-radius: 100%;
-    padding: 21px 0px; }
-  .currentTrack .playerControl :last-child {
-    margin: 16px; }
 .currentTrack .playInBar {
   width: 100%;
   height: 66px;
@@ -167,91 +258,5 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden; }
   .trackList .tracks:hover {
     overflow: overlay; }
-  .trackList .tracks ol {
-    margin: 0;
-    padding: 0;
-    counter-reset: myCounter; }
-    .trackList .tracks ol :nth-child(even) {
-      background: #f0f1f5; }
-    .trackList .tracks ol li {
-      list-style: none;
-      height: 82px;
-      background: #ffffff;
-      position: relative;
-      padding-left: 60px;
-      perspective: 800px; }
-      .trackList .tracks ol li:before {
-        font-size: 2em;
-        counter-increment: myCounter;
-        content: counter(myCounter);
-        color: #2482d0;
-        line-height: 82px;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        text-align: left;
-        padding-left: 20px; }
-      .trackList .tracks ol li .gifDiv {
-        display: none; }
-      .trackList .tracks ol li.active {
-        position: relative;
-        background: #fbdf8d; }
-        .trackList .tracks ol li.active::before {
-          content: '';
-          background: url("../img/musicBack.png") no-repeat center;
-          background-size: contain;
-          opacity: 0.1; }
-        .trackList .tracks ol li.active .gifDiv {
-          background: transparent;
-          display: block;
-          position: absolute;
-          left: 10px;
-          top: 25px;
-          border: 1px solid #c0a7bf;
-          border-radius: 100%; }
-          .trackList .tracks ol li.active .gifDiv .gifImg {
-            margin: 10px; }
-      .trackList .tracks ol li .titleAndAuthor {
-        float: left;
-        height: 82px;
-        background: inherit;
-        text-align: left;
-        color: rgba(88, 88, 88, 0.5);
-        width: 175px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        transform-style: preserve-3d;
-        transition: transform 1s ease;
-        position: relative;
-        transform-origin: 100% 41px; }
-        .trackList .tracks ol li .titleAndAuthor .rotatePart, .trackList .tracks ol li .titleAndAuthor .backRotatePart {
-          position: absolute;
-          background: inherit;
-          top: 20px;
-          left: 0; }
-        .trackList .tracks ol li .titleAndAuthor .rotatePart {
-          z-index: 2; }
-        .trackList .tracks ol li .titleAndAuthor .backRotatePart {
-          transform: rotateX(180deg);
-          height: 44px;
-          width: 100%; }
-        .trackList .tracks ol li .titleAndAuthor span {
-          color: rgba(88, 88, 88, 0.5);
-          font-size: 0.8em; }
-        .trackList .tracks ol li .titleAndAuthor :first-child {
-          color: rgba(82, 82, 82, 0.9);
-          font-size: 1em; }
-      .trackList .tracks ol li:hover .titleAndAuthor {
-        transform: rotateX(-180deg); }
-      .trackList .tracks ol li .votes {
-        background: transparent;
-        float: right;
-        color: rgba(88, 88, 88, 0.5);
-        margin-top: 55px;
-        margin-right: 25px;
-        font-size: 0.7em; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,41 @@
+li {
+  list-style: none;
+  height: 82px;
+  background: #ffffff;
+  position: relative;
+  padding-left: 60px;
+  perspective: 800px;
+
+  &:nth-child(even) {
+    background: #f0f1f5;
+  }
+
+  &:before {
+    font-size: 2em;
+    counter-increment: myCounter;
+    content:counter(myCounter);
+    color: $secondColor;
+    line-height: 82px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .gifDiv {
+    display: none;
+  }
+
+
+  .votes {
+    background: transparent;
+    float: right;
+    color: $greyColor;
+    margin-top: 55px;
+    margin-right: 25px;
+    font-size: 0.7em;
+  }
+}

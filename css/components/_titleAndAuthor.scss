@@ -1,0 +1,47 @@
+.titleAndAuthor {
+  float: left;
+  height: 82px;
+  background: inherit;
+  text-align: left;
+  color: $greyColor;
+  width: 175px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  position: relative;
+  transform-origin: 100% 41px;
+
+  .rotatePart, .backRotatePart {
+    position: absolute;
+    background: inherit;
+    top: 20px;
+    left: 0;
+  }
+
+  .rotatePart {
+    z-index: 2;
+  }
+
+  .backRotatePart {
+    transform: rotateX(180deg);
+    height: 44px;
+    width: 100%;
+  }
+
+  span {
+    color: $greyColor;
+    font-size: 0.8em;
+  }
+
+  :first-child {
+    color: $titleGrayColor;
+    font-size: 1em;
+  }
+
+}
+
+li:hover .titleAndAuthor {
+  transform: rotateX(-180deg);
+}

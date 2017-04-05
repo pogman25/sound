@@ -1,0 +1,22 @@
+.trackTitle {
+  height: 110px;
+  text-align: left;
+  overflow: hidden;
+
+  .playingAuthor, .playingTitle {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    opacity: 0.9;
+  }
+
+  .playingTitle {
+    color: #FFFFFF;
+    font-size: 1.8em;
+    padding: 10px 20px 5px 20px;;
+  }
+
+  .playingAuthor {
+    padding: 0 20px;
+  }
+}
