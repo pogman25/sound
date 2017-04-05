@@ -1,4 +1,10 @@
 @import url(base/normalize.css);
+.currentTrack, .trackList {
+  color: #c0a7bf;
+  background: rgba(200, 200, 200, 0.175);
+  width: 330px;
+  height: 600px; }
+
 :root {
   background: -moz-linear-gradient(-45deg, #b45c8c 0%, #81598a 35%, #49558a 73%, #505a8e 100%) no-repeat center center fixed;
   background: -webkit-linear-gradient(-45deg, #b45c8c 0%, #81598a 35%, #49558a 73%, #505a8e 100%) no-repeat center center fixed;
@@ -25,12 +31,6 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 28px;
     float: right;
     margin: 18px 20px 0 20px; }
-
-.currentTrack, .trackList {
-  color: #c0a7bf;
-  background: rgba(200, 200, 200, 0.175);
-  width: 330px;
-  height: 600px; }
 
 ol {
   margin: 0;
@@ -108,7 +108,10 @@ li.active {
     top: 20px;
     left: 0; }
   .titleAndAuthor .rotatePart {
-    z-index: 2; }
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   .titleAndAuthor .backRotatePart {
     transform: rotateX(180deg);
     height: 44px;
@@ -129,18 +132,13 @@ li:hover .titleAndAuthor {
   width: 720px;
   display: flex;
   justify-content: space-between; }
-  .player .currentTrack, .player .trackList {
-    color: #c0a7bf;
-    background: rgba(200, 200, 200, 0.175);
-    width: 330px;
-    height: 600px; }
 
-.currentTrack .albumPicture {
+.albumPicture {
   height: 220px;
   position: relative;
   background: url("../img/6754.svg") no-repeat center;
   background-size: cover; }
-  .currentTrack .albumPicture::after {
+  .albumPicture::after {
     content: '';
     background: -moz-linear-gradient(-75deg, rgba(41, 137, 216, 0) 20%, rgba(41, 137, 216, 0.4) 40%, rgba(36, 130, 208, 0.6) 51%, rgba(32, 124, 202, 0.4) 60%, rgba(32, 124, 202, 0) 80%);
     background: -webkit-linear-gradient(-75deg, rgba(41, 137, 216, 0) 20%, rgba(41, 137, 216, 0.4) 40%, rgba(36, 130, 208, 0.6) 51%, rgba(32, 124, 202, 0.4) 60%, rgba(32, 124, 202, 0) 80%);
@@ -151,93 +149,98 @@ li:hover .titleAndAuthor {
     left: 0;
     z-index: -1;
     position: absolute; }
-  .currentTrack .albumPicture img {
+  .albumPicture img {
     max-width: 150px;
     margin: 25px;
     float: left; }
-.currentTrack .trackTitle {
+
+.trackTitle {
   height: 110px;
   text-align: left;
   overflow: hidden; }
-  .currentTrack .trackTitle .playingAuthor, .currentTrack .trackTitle .playingTitle {
+  .trackTitle .playingAuthor, .trackTitle .playingTitle {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     opacity: 0.9; }
-  .currentTrack .trackTitle .playingTitle {
+  .trackTitle .playingTitle {
     color: #FFFFFF;
     font-size: 1.8em;
     padding: 10px 20px 5px 20px; }
-  .currentTrack .trackTitle .playingAuthor {
+  .trackTitle .playingAuthor {
     padding: 0 20px; }
-.currentTrack .playerControl {
+
+.playerControl {
   height: 100px;
   line-height: 100px;
   font-weight: lighter; }
-  .currentTrack .playerControl :first-child {
+  .playerControl :first-child {
     margin: 16px; }
-  .currentTrack .playerControl img {
+  .playerControl img {
     max-width: 28px;
     margin: 10px; }
-  .currentTrack .playerControl .playPauseBorder {
+  .playerControl .playPauseBorder {
     border: 1px solid #a7a9c5;
     border-radius: 100%;
     padding: 21px 0px; }
-  .currentTrack .playerControl :last-child {
+  .playerControl :last-child {
     margin: 16px; }
-.currentTrack .timePlay {
+
+.timePlay {
   height: 40px; }
-  .currentTrack .timePlay .begin, .currentTrack .timePlay .end {
+  .timePlay .begin, .timePlay .end {
     padding: 5px 20px; }
-  .currentTrack .timePlay .begin {
+  .timePlay .begin {
     color: #e6e3eb;
     float: left; }
-  .currentTrack .timePlay .end {
+  .timePlay .end {
     float: right; }
-  .currentTrack .timePlay .playLine {
+  .timePlay .playLine {
     clear: both;
     height: 4px;
     background: #c0a7bf;
     position: relative;
     cursor: pointer; }
-    .currentTrack .timePlay .playLine .currentLine {
+    .timePlay .playLine .currentLine {
       position: absolute;
       left: 0;
       top: 0;
       width: 0; }
-      .currentTrack .timePlay .playLine .currentLine .currentPlace {
+      .timePlay .playLine .currentLine .currentPlace {
         float: left;
         width: 100%;
         border: 2px solid #2482d0; }
-        .currentTrack .timePlay .playLine .currentLine .currentPlace .creepingBrick {
+        .timePlay .playLine .currentLine .currentPlace .creepingBrick {
           float: right;
           -webkit-box-shadow: 0 0 5px 5px white;
           -moz-box-shadow: 0 0 5px 5px white;
           box-shadow: 0 0 5px 5px white; }
-.currentTrack .playInBar {
+
+.playInBar {
   width: 100%;
   height: 66px;
   color: #FFF;
   background: #2482d0;
   line-height: 66px; }
-  .currentTrack .playInBar .playButton {
+  .playInBar .playButton {
     max-width: 25px;
     margin-right: 15px; }
 
-.trackList h4 {
+h4 {
   opacity: 0.7;
   font-size: 0.8em;
   letter-spacing: 0.2em;
   padding-top: 24px;
   text-transform: uppercase; }
-.trackList .addButton {
+
+.addButton {
   height: 126px;
   width: 85%;
   margin: 0 auto; }
-  .trackList .addButton h2 {
+  .addButton h2 {
     font-weight: lighter;
     color: #e6e3eb; }
-  .trackList .addButton button {
+  .addButton button {
     margin-top: 15px;
     height: 44px;
     font-size: 0.8em;
@@ -251,12 +254,13 @@ li:hover .titleAndAuthor {
     background: transparent;
     border: 2px solid rgba(192, 167, 191, 0.31);
     outline: none; }
-    .trackList .addButton button:active {
+    .addButton button:active {
       border: 4px solid rgba(192, 167, 191, 0.31); }
-.trackList .tracks {
+
+.tracks {
   height: 410px;
   overflow: hidden; }
-  .trackList .tracks:hover {
+  .tracks:hover {
     overflow: overlay; }
 
 /*# sourceMappingURL=main.css.map */

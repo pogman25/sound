@@ -4,11 +4,4 @@
   width: 720px;
   display: flex;
   justify-content: space-between;
-
-  .currentTrack, .trackList {
-    color: $mainColor;
-    background: rgba(200, 200, 200, 0.175);
-    width: 330px;
-    height: 600px;
-  }
 }

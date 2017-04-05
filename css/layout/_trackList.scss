@@ -1,7 +1,7 @@
 .trackList {
-
-  @import "trackList/h4";
-  @import "trackList/addButton";
-  @import "trackList/tracks";
-
+  @extend %plyaerChild;
 }
+
+@import "trackList/h4";
+@import "trackList/addButton";
+@import "trackList/tracks";

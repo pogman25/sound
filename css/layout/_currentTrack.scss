@@ -1,9 +1,9 @@
 .currentTrack {
-
-  @import "currentTrack/albumPicture";
-  @import "currentTrack/trackTitle";
-  @import "currentTrack/playerControl";
-  @import "currentTrack/timePlay";
-  @import "currentTrack/playInBar";
-
+  @extend %plyaerChild;
 }
+
+@import "currentTrack/albumPicture";
+@import "currentTrack/trackTitle";
+@import "currentTrack/playerControl";
+@import "currentTrack/timePlay";
+@import "currentTrack/playInBar";
