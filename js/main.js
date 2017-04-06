@@ -1,6 +1,6 @@
 
 const myAudio = new Audio();
-
+console.log(myAudio.prototype);
 myAudio.addEventListener('timeupdate', currentTimeUpdate);
 
 myAudio.addEventListener('abort', function () {
@@ -12,8 +12,7 @@ function startPlay () {
     const list = [].slice.call(document.querySelectorAll('.list'));
     const activeClass = list.filter(item => item.classList.contains('active'));
     if(!activeClass.length) {
-        const event = new Event('click');
-        list[0].dispatchEvent(event);
+        list[0].click();
     } else {
         myAudio.play();
         addPauseButton();
@@ -66,32 +65,30 @@ function setTrackFromList (src) {
 
 function forward () {
     const list = [].slice.call(document.querySelectorAll('.list'));
-    const event = new Event('click');
-    const activeClass = list.filter(item => item.classList.contains('active'));
+    const activeClass = list.filter( item => item.classList.contains('active'));
     if(activeClass.length) {
         if(activeClass[0].nextElementSibling) {
-            activeClass[0].nextElementSibling.dispatchEvent(event);
+            activeClass[0].nextElementSibling.click();
         } else {
-            list[0].dispatchEvent(event);
+            list[0].click();
         }
     } else {
-        list[0].dispatchEvent(event);
+        list[0].click();
     }
 }
 
 function backward () {
     const list = [].slice.call(document.querySelectorAll('.list'));
-    const event = new Event('click');
     if(myAudio.currentTime < 10) {
-        let activeClass = list.filter((item, num) => {return item.classList.contains('active')});
+        let activeClass = list.filter( item => {return item.classList.contains('active')});
         if(activeClass.length) {
             if(activeClass[0].previousElementSibling) {
-                activeClass[0].previousElementSibling.dispatchEvent(event);
+                activeClass[0].previousElementSibling.click();
             } else {
-                list[list.length-1].dispatchEvent(event);
+                list[list.length-1].click();
             }
         } else {
-            list[0].dispatchEvent(event);
+            list[0].click();
         }
     } else {
         myAudio.currentTime = 0;
