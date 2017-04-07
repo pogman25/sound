@@ -20,9 +20,7 @@ function MyPlayer() {
 
     function moveTime (xPos) {
 
-        const progressBar = setLinePosition();
-        const linePos = progressBar.linePos;
-        const currentLine = progressBar.currentLine;
+        const { linePos, currentLine } = setLinePosition();
 
         let toTime = (xPos - linePos.getBoundingClientRect().left)/330*100;
         currentLine.style.width = toTime + '%';
@@ -45,12 +43,15 @@ function MyPlayer() {
     function forward () {
         const list = getTrackList();
         const activeClass = list.filter( item => item.classList.contains('active'));
+
         if(activeClass.length) {
+
             if(activeClass[0].nextElementSibling) {
                 activeClass[0].nextElementSibling.click();
             } else {
                 list[0].click();
             }
+
         } else {
             list[0].click();
         }
@@ -58,8 +59,10 @@ function MyPlayer() {
 
     function backward () {
         const list = getTrackList();
+
         if(myAudio.currentTime < 10) {
             let activeClass = list.filter( item => {return item.classList.contains('active')});
+
             if(activeClass.length) {
                 if(activeClass[0].previousElementSibling) {
                     activeClass[0].previousElementSibling.click();
@@ -69,10 +72,10 @@ function MyPlayer() {
             } else {
                 list[0].click();
             }
+
         } else {
             myAudio.currentTime = 0;
         }
-
     }
 
     this.init = function () {

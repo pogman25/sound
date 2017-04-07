@@ -12,7 +12,7 @@ trackList.forEach(({src, votes, img}) => {
         tags: ["title","artist","album","picture"]
     });
 
-    function showTags(url, img, li) {
+    function showTags (url, img, li) {
         const tags = ID3.getAllTags(url);
         console.log(tags);
         let { title, artist, album } = tags;
@@ -34,7 +34,7 @@ trackList.forEach(({src, votes, img}) => {
         target.classList.add('active');
     }
 
-    function addTitleAndArtist(li, title, artist, album) {
+    function addTitleAndArtist (li, title, artist, album) {
         const titleAndAuthor = document.createElement('div');
         titleAndAuthor.classList.add('titleAndAuthor');
         titleAndAuthor.innerHTML = `<div class="rotatePart"><span>${title}</span><br/><span>${artist}</span></div><div class="backRotatePart">${album}</div>`;

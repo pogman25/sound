@@ -1,3 +1,4 @@
+
 function currentTimeUpdate (myAudio) {
     const currPlayTime = myAudio.currentTime.toFixed(0);
     const currentPlayTime = document.querySelector('.begin');
@@ -8,7 +9,7 @@ function currentTimeUpdate (myAudio) {
     timeValue.style.width = durationPercent+'%';
 }
 
-function endTime(myAudio) {
+function endTime (myAudio) {
     const endPlayTime = document.querySelector('.end');
     const allDuration = Math.floor(myAudio.duration);
     const minutes = Math.floor(allDuration/60);
@@ -16,28 +17,28 @@ function endTime(myAudio) {
     endPlayTime.innerHTML = (minutes + ':' + seconds);
 }
 
-function getTrackList() {
+function getTrackList () {
     const list = document.querySelectorAll('.list');
     return [].slice.call(list)
 }
 
-function addPlaying() {
+function addPlaying () {
     const playButton = document.querySelector('.playPauseBorder');
     playButton.classList.add('playing');
 }
 
-function removePlaying() {
+function removePlaying () {
     const playButton = document.querySelector('.playPauseBorder');
     playButton.classList.remove('playing');
 }
 
-function setLinePosition() {
+function setLinePosition () {
     const linePos = document.querySelector('.playLine');
     const currentLine = linePos.querySelector('.currentLine');
     return {linePos, currentLine};
 }
 
-function setBeginTime(toTime) {
+function setBeginTime (toTime) {
     const currentPlayTime = document.querySelector('.begin');
     const time = Math.round(toTime*Math.round(myAudio.duration)/100);
     currentPlayTime.innerHTML = (getMinuteSecond(time));
