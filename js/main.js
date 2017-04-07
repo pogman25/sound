@@ -19,8 +19,11 @@ function MyPlayer() {
     }
 
     function moveTime (xPos) {
-        let linePos = document.querySelector('.playLine');
-        let currentLine = linePos.querySelector('.currentLine');
+
+        const progressBar = setLinePosition();
+        const linePos = progressBar.linePos;
+        const currentLine = progressBar.currentLine;
+
         let toTime = (xPos - linePos.getBoundingClientRect().left)/330*100;
         currentLine.style.width = toTime + '%';
         myAudio.removeEventListener('timeupdate', () => currentTimeUpdate(myAudio));
@@ -28,9 +31,7 @@ function MyPlayer() {
         linePos.onmousemove = function (e) {
             toTime = (e.clientX - linePos.getBoundingClientRect().left)/330*100;
             currentLine.style.width = toTime + '%';
-            const currentPlayTime = document.querySelector('.begin');
-            const time = Math.round(toTime*Math.round(myAudio.duration)/100);
-            currentPlayTime.innerHTML = (getMinuteSecond(time));
+            setBeginTime(toTime);
         };
 
         document.onmouseup = function () {
@@ -56,7 +57,7 @@ function MyPlayer() {
     }
 
     function backward () {
-        const list = getTrackList();;
+        const list = getTrackList();
         if(myAudio.currentTime < 10) {
             let activeClass = list.filter( item => {return item.classList.contains('active')});
             if(activeClass.length) {
@@ -80,7 +81,7 @@ function MyPlayer() {
             const currentLine = document.querySelector('.currentLine');
             currentLine.style.width = 0;
         });
-        myAudio.addEventListener('loadedmetadata', () => abort(myAudio));
+        myAudio.addEventListener('loadedmetadata', () => endTime(myAudio));
         document.querySelector('.playPause').onclick = () => startPlay();
         document.querySelector('.pausePlay').onclick = () => stopPlay();
         document.querySelector('.forward').onclick = () => forward();
