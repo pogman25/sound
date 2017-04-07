@@ -1,29 +1,29 @@
-function MyPlayer(src) {
+function MyPlayer() {
     const myAudio = new Audio();
 
     function startPlay () {
-        const list = [].slice.call(document.querySelectorAll('.list'));
+        const list = getTrackList();
         const activeClass = list.filter(item => item.classList.contains('active'));
         if(!activeClass.length) {
             list[0].click();
         } else {
+            addPlaying();
             myAudio.play();
-            addPauseButton();
-            myAudio.addEventListener('timeupdate', currentTimeUpdate);
+            myAudio.addEventListener('timeupdate', () => currentTimeUpdate(myAudio));
         }
     }
 
     function stopPlay () {
-        addPlayButton();
+        removePlaying();
         myAudio.pause();
     }
 
     function moveTime (xPos) {
         let linePos = document.querySelector('.playLine');
-        let currentLine = document.querySelector('.currentLine');
+        let currentLine = linePos.querySelector('.currentLine');
         let toTime = (xPos - linePos.getBoundingClientRect().left)/330*100;
         currentLine.style.width = toTime + '%';
-        myAudio.removeEventListener('timeupdate', currentTimeUpdate);
+        myAudio.removeEventListener('timeupdate', () => currentTimeUpdate(myAudio));
 
         linePos.onmousemove = function (e) {
             toTime = (e.clientX - linePos.getBoundingClientRect().left)/330*100;
@@ -36,13 +36,13 @@ function MyPlayer(src) {
         document.onmouseup = function () {
             linePos.onmousemove = null;
             document.onmouseup = null;
-            myAudio.addEventListener('timeupdate', currentTimeUpdate);
+            myAudio.addEventListener('timeupdate', () => currentTimeUpdate(myAudio));
             myAudio.currentTime = (toTime*Math.round(myAudio.duration)/100);
         };
     }
 
     function forward () {
-        const list = [].slice.call(document.querySelectorAll('.list'));
+        const list = getTrackList();
         const activeClass = list.filter( item => item.classList.contains('active'));
         if(activeClass.length) {
             if(activeClass[0].nextElementSibling) {
@@ -56,7 +56,7 @@ function MyPlayer(src) {
     }
 
     function backward () {
-        const list = [].slice.call(document.querySelectorAll('.list'));
+        const list = getTrackList();;
         if(myAudio.currentTime < 10) {
             let activeClass = list.filter( item => {return item.classList.contains('active')});
             if(activeClass.length) {
@@ -74,51 +74,15 @@ function MyPlayer(src) {
 
     }
 
-    function currentTimeUpdate () {
-        const currPlayTime = myAudio.currentTime.toFixed(0);
-        const currentPlayTime = document.querySelector('.begin');
-        currentPlayTime.innerHTML = (getMinuteSecond(currPlayTime));
-
-        const durationPercent = currPlayTime/Math.round(myAudio.duration)*100;
-        const timeValue = document.querySelector('.currentLine');
-        timeValue.style.width = durationPercent+'%';
-    }
-
-    function abort() {
-        const endPlayTime = document.querySelector('.end');
-        const allDuration = Math.floor(myAudio.duration);
-        const minutes = Math.floor(allDuration/60);
-        const seconds = allDuration - minutes*60;
-        endPlayTime.innerHTML = (minutes + ':' + seconds);
-    }
-
-    function addPlayButton () {
-        const playButton = document.querySelector('.playPause');
-        playButton.src = 'img/white-play-button.svg';
-        playButton.onclick = () => startPlay();
-    }
-
-    function addPauseButton () {
-        const playButton = document.querySelector('.playPause');
-        playButton.src = 'img/pause-sign.svg';
-        playButton.onclick = () => stopPlay();
-    }
-
-    function getMinuteSecond (time) {
-        const minutes = Math.floor(time/60);
-        const seconds = time - minutes*60;
-        const viewSeconds = seconds < 10 ? '0' + seconds : seconds;
-        return minutes + ':' + viewSeconds;
-    }
-
     this.init = function () {
-        myAudio.addEventListener('timeupdate', currentTimeUpdate);
+        myAudio.addEventListener('timeupdate', () => currentTimeUpdate(myAudio));
         myAudio.addEventListener('abort', function () {
-            let currentLine = document.querySelector('.currentLine');
+            const currentLine = document.querySelector('.currentLine');
             currentLine.style.width = 0;
         });
-        myAudio.addEventListener('loadedmetadata', abort);
+        myAudio.addEventListener('loadedmetadata', () => abort(myAudio));
         document.querySelector('.playPause').onclick = () => startPlay();
+        document.querySelector('.pausePlay').onclick = () => stopPlay();
         document.querySelector('.forward').onclick = () => forward();
         document.querySelector('.back').onclick = () => backward();
         document.querySelector('.playLine').onmousedown = (event) => moveTime(event.clientX);

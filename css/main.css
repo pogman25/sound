@@ -180,9 +180,20 @@ li:hover .titleAndAuthor {
     max-width: 28px;
     margin: 10px; }
   .playerControl .playPauseBorder {
+    display: inline-flex;
+    width: 62px;
+    height: 62px;
     border: 1px solid #a7a9c5;
     border-radius: 100%;
-    padding: 21px 0px; }
+    vertical-align: middle; }
+    .playerControl .playPauseBorder .pausePlay {
+      display: none; }
+    .playerControl .playPauseBorder .playPause {
+      display: inherit; }
+    .playerControl .playPauseBorder.playing .pausePlay {
+      display: inherit; }
+    .playerControl .playPauseBorder.playing .playPause {
+      display: none; }
   .playerControl :last-child {
     margin: 16px; }
 
